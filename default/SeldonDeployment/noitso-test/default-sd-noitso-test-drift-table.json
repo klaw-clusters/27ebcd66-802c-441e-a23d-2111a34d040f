@@ -43,7 +43,7 @@
                             "--protocol",
                             "seldon.http",
                             "--storage_uri",
-                            "gs://tom-seldon-examples/noitsu/drift",
+                            "gs://tom-seldon-examples/noitsu/drifting",
                             "--reply_url",
                             "http://seldon-request-logger.seldon-logs",
                             "--event_type",
