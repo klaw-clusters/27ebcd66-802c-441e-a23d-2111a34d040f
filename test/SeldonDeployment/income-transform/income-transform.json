@@ -1,0 +1,78 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "income-transform",
+        "namespace": "test",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "income-transform",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "input-transformer",
+                    "children": [
+                        {
+                            "name": "income-transform-container",
+                            "implementation": "SKLEARN_SERVER",
+                            "modelUri": "gs://tom-seldon-examples/noitsu/model",
+                            "logger": {
+                                "mode": "all"
+                            }
+                        }
+                    ],
+                    "type": "TRANSFORMER"
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-11-10T11:40:22Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "income-transform-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        }
+                                    }
+                                },
+                                {
+                                    "name": "input-transformer",
+                                    "image": "seangreaves/income-transformer:0.1",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/income-transform-container": "default",
+                    "project.seldon.io/input-transformer": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
