@@ -50,7 +50,9 @@
                             "io.seldon.serving.inference.drift",
                             "--event_source",
                             "io.seldon.serving.noitso-test-drift-testing",
-                            "DriftDetector"
+                            "DriftDetector",
+                            "--drift_batch_size",
+                            "2"
                         ],
                         "ports": [
                             {
