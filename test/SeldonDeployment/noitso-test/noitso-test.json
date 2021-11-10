@@ -34,7 +34,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2021-11-10T17:36:00Z"
+                            "creationTimestamp": "2021-11-10T18:10:33Z"
                         },
                         "spec": {
                             "containers": [
@@ -53,7 +53,7 @@
                                 },
                                 {
                                     "name": "input-transformer",
-                                    "image": "tomfarrand/noitsu-preprocessor:0.2",
+                                    "image": "seangreaves/noitso-preprocessor:0.1",
                                     "resources": {}
                                 }
                             ]
