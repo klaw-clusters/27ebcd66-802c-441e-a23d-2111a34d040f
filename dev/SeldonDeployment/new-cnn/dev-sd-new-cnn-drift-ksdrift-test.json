@@ -43,7 +43,7 @@
                             "--protocol",
                             "seldon.http",
                             "--storage_uri",
-                            "tom-seldon-examples/time-series-workshop/tom-farrand/",
+                            "gs://tom-seldon-examples/time-series-workshop/tom-farrand/",
                             "--reply_url",
                             "http://seldon-request-logger.seldon-logs",
                             "--event_type",
