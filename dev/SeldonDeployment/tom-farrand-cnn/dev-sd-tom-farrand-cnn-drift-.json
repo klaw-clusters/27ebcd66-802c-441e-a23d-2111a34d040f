@@ -40,13 +40,17 @@
                             "8080",
                             "--protocol",
                             "tensorflow.http",
+                            "--storage_uri",
+                            "gs://tom-seldon-examples/time-series-workshop/tom-farrand/drift_detector/",
                             "--reply_url",
                             "http://seldon-request-logger.seldon-logs.svc.cluster.local:80",
                             "--event_type",
                             "io.seldon.serving.inference.drift",
                             "--event_source",
                             "io.seldon.serving.tom-farrand-cnn-",
-                            "DriftDetector"
+                            "DriftDetector",
+                            "--drift_batch_size",
+                            "5"
                         ],
                         "ports": [
                             {
