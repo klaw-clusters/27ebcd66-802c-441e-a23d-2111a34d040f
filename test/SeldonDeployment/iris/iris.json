@@ -20,8 +20,8 @@
                     "endpoint": {
                         "type": "REST"
                     },
-                    "modelUri": "s3://sean-seldon-examples/sklearn",
-                    "envSecretRefName": "aws-secret",
+                    "modelUri": "azureblob://models",
+                    "envSecretRefName": "azure-secret",
                     "logger": {
                         "mode": "all"
                     }
@@ -29,7 +29,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2021-11-29T19:35:25Z"
+                            "creationTimestamp": "2021-11-29T19:56:27Z"
                         },
                         "spec": {
                             "containers": [
@@ -53,35 +53,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 60
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "canary-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "azureblob://models",
-                    "envSecretRefName": "azure-secret"
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-11-29T19:35:25Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "canary-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 40
+                "traffic": 100
             }
         ],
         "annotations": {
