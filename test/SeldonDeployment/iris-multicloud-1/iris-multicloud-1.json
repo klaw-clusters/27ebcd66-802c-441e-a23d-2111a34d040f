@@ -6,6 +6,7 @@
         "namespace": "test",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-test",
             "fluentd": "true"
         }
     },
@@ -53,52 +54,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 50
-            },
-            {
-                "name": "canary",
-                "graph": {
-                    "name": "iris-multicloud-1-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "s3://sean-seldon-examples/sklearn/svc\"",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-12-02T08:58:08Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "iris-multicloud-1-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "1",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi",
-                                            "nvidia.com/gpu": "0"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/iris-multicloud-1-container": "default",
-                    "seldon.io/canary": "true"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 50
+                "traffic": 100
             }
         ],
         "annotations": {
