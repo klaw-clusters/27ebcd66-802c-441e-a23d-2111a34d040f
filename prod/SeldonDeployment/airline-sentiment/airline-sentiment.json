@@ -1,0 +1,78 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "airline-sentiment",
+        "namespace": "prod",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "airline-sentiment",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "airline-sentiment-container",
+                    "type": "MODEL",
+                    "parameters": [
+                        {
+                            "name": "model_path",
+                            "value": "nlp-workshop/tom-farrand/model.joblib",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "tfidf_path",
+                            "value": "nlp-workshop/tom-farrand/tfidf.joblib",
+                            "type": "STRING"
+                        }
+                    ],
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-12-11T09:11:45Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "airline-sentiment-container",
+                                    "image": "tomfarrand/tweet-sentiment:0.1",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/airline-sentiment-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
