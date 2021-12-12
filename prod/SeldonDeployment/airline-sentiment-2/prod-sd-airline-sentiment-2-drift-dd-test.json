@@ -52,7 +52,7 @@
                             "io.seldon.serving.airline-sentiment-2-dd-test",
                             "DriftDetector",
                             "--drift_batch_size",
-                            "5"
+                            "4"
                         ],
                         "ports": [
                             {
