@@ -1,0 +1,72 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "tom-farrand-tweet-sentiment",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "tom-farrand-tweet-sentiment",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "tom-farrand-tweet-sentiment-container",
+                    "parameters": [
+                        {
+                            "name": "model_path",
+                            "value": "nlp-workshop/tom-farrand/model.joblib",
+                            "type": "STRING"
+                        },
+                        {
+                            "name": "tfidf_path",
+                            "value": "nlp-workshop/tom-farrand/tfidf.joblib",
+                            "type": "STRING"
+                        }
+                    ],
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2021-12-13T10:17:00Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "tom-farrand-tweet-sentiment-container",
+                                    "image": "tomfarrand/tweet-sentiment:0.3",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
