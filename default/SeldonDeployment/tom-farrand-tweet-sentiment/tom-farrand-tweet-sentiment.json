@@ -61,24 +61,7 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 100,
-                "explainer": {
-                    "type": "AnchorText",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    },
-                    "config": {
-                        "batch_size": "100",
-                        "delta": "0.1",
-                        "sample_proba": "0.5",
-                        "tau": "0.15",
-                        "temperature": "1",
-                        "threshold": "0.95",
-                        "use_similarity_proba": "false",
-                        "use_unk": "true"
-                    }
-                }
+                "traffic": 100
             }
         ],
         "annotations": {
