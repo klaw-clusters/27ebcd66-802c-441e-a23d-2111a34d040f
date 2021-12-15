@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-default",
             "fluentd": "true"
         }
     },
@@ -14,48 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "asosmason-lr-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "endpoint": {
-                        "type": "REST"
-                    },
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/asosmason/lr",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-12-15T11:04:55Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "asosmason-lr-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 70
-            },
-            {
-                "name": "canary",
                 "graph": {
                     "name": "asosmason-lr-container",
                     "type": "MODEL",
@@ -92,12 +51,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/asosmason-lr-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/asosmason-lr-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 30
+                "traffic": 100
             }
         ],
         "annotations": {
