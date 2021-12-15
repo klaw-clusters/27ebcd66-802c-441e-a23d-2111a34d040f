@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-default",
             "fluentd": "true"
         }
     },
@@ -14,48 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "xx-lr-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "endpoint": {
-                        "type": "REST"
-                    },
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/xx/lr",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2021-12-15T09:40:18Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "xx-lr-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 90
-            },
-            {
-                "name": "canary",
                 "graph": {
                     "name": "xx-lr-container",
                     "type": "MODEL",
@@ -92,12 +51,14 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/xx-lr-container": "default",
-                    "seldon.io/canary": "true"
+                    "project.seldon.io/xx-lr-container": "default"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "traffic": 10
+                "traffic": 100
             }
         ],
         "annotations": {
