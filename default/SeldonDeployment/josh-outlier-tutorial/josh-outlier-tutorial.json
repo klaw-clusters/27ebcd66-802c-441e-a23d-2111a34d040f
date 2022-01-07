@@ -1,0 +1,55 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "josh-outlier-tutorial",
+        "namespace": "default",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "josh-outlier-tutorial",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "josh-outlier-tutorial-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://seldon-models/tfserving/cifar10/resnet32",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-01-07T02:52:46Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "josh-outlier-tutorial-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/josh-outlier-tutorial-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
