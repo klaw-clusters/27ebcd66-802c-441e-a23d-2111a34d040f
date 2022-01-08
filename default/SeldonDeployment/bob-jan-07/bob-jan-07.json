@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-default",
             "fluentd": "true"
         }
     },
@@ -14,47 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "bob-jan-07-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-01-08T00:35:08Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "bob-jan-07-container",
-                                    "resources": {}
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "annotations": {
-                    "project.seldon.io/bob-jan-07-container": "default"
-                },
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 100,
-                "explainer": {
-                    "type": "AnchorTabular",
-                    "modelUri": "gs://seldon-models/alibi/iris_anchor_tabular_explainer_v2",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    }
-                }
-            },
-            {
-                "name": "shadow",
                 "graph": {
                     "name": "bob-jan-07-container",
                     "implementation": "SKLEARN_SERVER",
@@ -84,8 +44,11 @@
                     "seldon.io/canary": "false"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "shadow": true
+                "traffic": 100
             }
         ],
         "annotations": {
