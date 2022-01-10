@@ -44,15 +44,7 @@
                 },
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 100,
-                "explainer": {
-                    "type": "AnchorTabular",
-                    "modelUri": "gs://seldon-models/tfserving/cifar10/explainer-py36-0.5.2",
-                    "containerSpec": {
-                        "name": "",
-                        "resources": {}
-                    }
-                }
+                "traffic": 100
             }
         ],
         "annotations": {
