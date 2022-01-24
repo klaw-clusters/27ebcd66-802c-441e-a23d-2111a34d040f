@@ -68,6 +68,51 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
+            },
+            {
+                "name": "shadow",
+                "graph": {
+                    "name": "dbs-test-container",
+                    "implementation": "XGBOOST_SERVER",
+                    "modelUri": "gs://seldon-models/iris/xgboost",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-01-24T08:59:44Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "dbs-test-container",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/dbs-test-container": "default",
+                    "seldon.io/canary": "false"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "shadow": true
             }
         ],
         "annotations": {
