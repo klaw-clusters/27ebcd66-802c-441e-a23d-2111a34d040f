@@ -1,6 +1,6 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "apiVersion": "machinelearning.seldon.io/v1",
     "metadata": {
         "name": "pratik-lr",
         "namespace": "default",
@@ -53,6 +53,40 @@
                 "engineResources": {},
                 "svcOrchSpec": {},
                 "traffic": 100
+            },
+            {
+                "name": "shadow",
+                "graph": {
+                    "name": "pratik-lr-container",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/pratik/lr",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-01-26T07:53:39Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "pratik-lr-container",
+                                    "resources": {}
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/pratik-lr-container": "default",
+                    "seldon.io/canary": "false"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "shadow": true
             }
         ],
         "annotations": {
