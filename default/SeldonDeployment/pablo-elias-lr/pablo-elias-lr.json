@@ -1,12 +1,11 @@
 {
     "kind": "SeldonDeployment",
-    "apiVersion": "machinelearning.seldon.io/v1",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
     "metadata": {
         "name": "pablo-elias-lr",
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
-            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-default",
             "fluentd": "true"
         }
     },
@@ -29,7 +28,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2022-01-26T07:40:15Z"
+                            "creationTimestamp": "2022-01-26T08:17:05Z"
                         },
                         "spec": {
                             "containers": [
@@ -53,7 +52,15 @@
                 "replicas": 1,
                 "engineResources": {},
                 "svcOrchSpec": {},
-                "traffic": 100
+                "traffic": 100,
+                "explainer": {
+                    "type": "AnchorTabular",
+                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/pablo-elias/lr",
+                    "containerSpec": {
+                        "name": "",
+                        "resources": {}
+                    }
+                }
             }
         ],
         "annotations": {
