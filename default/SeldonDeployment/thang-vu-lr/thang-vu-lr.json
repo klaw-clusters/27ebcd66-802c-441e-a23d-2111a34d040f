@@ -6,6 +6,7 @@
         "namespace": "default",
         "creationTimestamp": null,
         "labels": {
+            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-default",
             "fluentd": "true"
         }
     },
@@ -14,48 +15,6 @@
         "predictors": [
             {
                 "name": "default",
-                "graph": {
-                    "name": "thang-vu-lr-container",
-                    "implementation": "SKLEARN_SERVER",
-                    "endpoint": {
-                        "type": "REST"
-                    },
-                    "modelUri": "gs://tom-seldon-examples/retail-workshop/models/thang-vu/lr",
-                    "logger": {
-                        "mode": "all"
-                    }
-                },
-                "componentSpecs": [
-                    {
-                        "metadata": {
-                            "creationTimestamp": "2022-01-26T07:40:04Z"
-                        },
-                        "spec": {
-                            "containers": [
-                                {
-                                    "name": "thang-vu-lr-container",
-                                    "resources": {
-                                        "limits": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        },
-                                        "requests": {
-                                            "cpu": "100m",
-                                            "memory": "1Gi"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "engineResources": {},
-                "svcOrchSpec": {},
-                "traffic": 100
-            },
-            {
-                "name": "shadow",
                 "graph": {
                     "name": "thang-vu-lr-container",
                     "implementation": "XGBOOST_SERVER",
@@ -96,8 +55,11 @@
                     "seldon.io/canary": "false"
                 },
                 "engineResources": {},
+                "labels": {
+                    "version": "default"
+                },
                 "svcOrchSpec": {},
-                "shadow": true
+                "traffic": 100
             }
         ],
         "annotations": {
