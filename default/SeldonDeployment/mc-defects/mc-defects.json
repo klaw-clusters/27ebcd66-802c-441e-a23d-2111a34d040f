@@ -1,0 +1,97 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1alpha2",
+    "metadata": {
+        "name": "mc-defects",
+        "namespace": "default",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "name": "mc-defects",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "simple-cnn",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/workshops/manufacturing/mc/simple-cnn/",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-16T18:03:49Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "simple-cnn",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 50
+            },
+            {
+                "name": "canary",
+                "graph": {
+                    "name": "inception",
+                    "implementation": "TENSORFLOW_SERVER",
+                    "modelUri": "gs://tom-seldon-examples/workshops/manufacturing/mc/inception/",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-16T18:03:49Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "inception",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        },
+                                        "requests": {
+                                            "cpu": "1",
+                                            "memory": "1Gi"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "seldon.io/canary": "true"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 50
+            }
+        ],
+        "protocol": "seldon"
+    },
+    "status": {}
+}
