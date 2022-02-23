@@ -1,0 +1,66 @@
+{
+    "kind": "SeldonDeployment",
+    "apiVersion": "machinelearning.seldon.io/v1",
+    "metadata": {
+        "name": "solubility-predictor",
+        "namespace": "prod",
+        "creationTimestamp": null,
+        "labels": {
+            "fluentd": "true"
+        }
+    },
+    "spec": {
+        "name": "solubility-predictor",
+        "predictors": [
+            {
+                "name": "default",
+                "graph": {
+                    "name": "solubility-predictor-container",
+                    "type": "MODEL",
+                    "logger": {
+                        "mode": "all"
+                    }
+                },
+                "componentSpecs": [
+                    {
+                        "metadata": {
+                            "creationTimestamp": "2022-02-23T11:58:44Z"
+                        },
+                        "spec": {
+                            "containers": [
+                                {
+                                    "name": "solubility-predictor-container",
+                                    "image": "tomfarrand/solubility-predictor:0.3",
+                                    "resources": {
+                                        "limits": {
+                                            "cpu": "1",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        },
+                                        "requests": {
+                                            "cpu": "100m",
+                                            "memory": "1Gi",
+                                            "nvidia.com/gpu": "0"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "annotations": {
+                    "project.seldon.io/solubility-predictor-container": "default"
+                },
+                "engineResources": {},
+                "svcOrchSpec": {},
+                "traffic": 100
+            }
+        ],
+        "annotations": {
+            "seldon.io/engine-seldon-log-messages-externally": "true"
+        },
+        "protocol": "seldon"
+    },
+    "status": {}
+}
