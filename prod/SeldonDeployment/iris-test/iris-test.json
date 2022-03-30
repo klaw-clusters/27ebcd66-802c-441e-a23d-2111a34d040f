@@ -6,7 +6,6 @@
         "namespace": "prod",
         "creationTimestamp": null,
         "labels": {
-            "app.kubernetes.io/instance": "27ebcd66-802c-441e-a23d-2111a34d040f-prod",
             "fluentd": "true"
         }
     },
@@ -17,8 +16,8 @@
                 "name": "default",
                 "graph": {
                     "name": "iris-test-container",
-                    "implementation": "XGBOOST_SERVER",
-                    "modelUri": "gs://seldon-models/xgboost/iris",
+                    "implementation": "SKLEARN_SERVER",
+                    "modelUri": "gs://seldon-models/v1.11.2/sklearn/iris",
                     "logger": {
                         "mode": "all"
                     }
@@ -26,7 +25,7 @@
                 "componentSpecs": [
                     {
                         "metadata": {
-                            "creationTimestamp": "2022-03-30T12:33:31Z"
+                            "creationTimestamp": "2022-03-30T12:30:14Z"
                         },
                         "spec": {
                             "containers": [
@@ -51,13 +50,9 @@
                 ],
                 "replicas": 1,
                 "annotations": {
-                    "project.seldon.io/iris-test-container": "default",
-                    "seldon.io/canary": "false"
+                    "project.seldon.io/iris-test-container": "default"
                 },
                 "engineResources": {},
-                "labels": {
-                    "version": "default"
-                },
                 "svcOrchSpec": {},
                 "traffic": 100
             }
